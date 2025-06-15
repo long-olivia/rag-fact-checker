@@ -1,6 +1,6 @@
 Creating an open source fact-checker for RAG chatbots. Research project by the Columbia AI Alignment Club.
 
-## Overall fact-checking workflow
+## Overall workflow
 ![Overall workflow](project/Fact-Checker%20Workflow.jpg)
 
 ## Dataset collection
