@@ -1,7 +1,9 @@
 Creating an open source fact-checker for RAG chatbots. Research project by the Columbia AI Alignment Club.
 
 ## Goals
-1. Make fact-checking evaluation feasi
+We are training our own fact-checking model to make it possible to implement well-researched frameworks (specifically, VeriScore and FactScore) at scale, complementing or even replacing the evaluation of RAG outputs against arbitrary ground truths and the use of subjective LLM as a Judge metrics. Particularly, we want to:
+1. Make fact-checking feasible and accessible as an objective metric for evaluating RAG performance.
+2. Make specialized fact-checkers a low-cost and accessible component of RAG workflows to boost generation reliability.
 
 ## Overall workflow
 ![Overall workflow](project/Fact-Checker%20Workflow.jpg)
