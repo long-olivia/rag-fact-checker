@@ -1,5 +1,17 @@
 Creating an open source fact-checker for RAG chatbots. Research project by the Columbia AI Alignment Club.
 
+## Goals
+1. Make fact-checking evaluation feasi
+
+## Overall workflow
+![Overall workflow](project/Fact-Checker%20Workflow.jpg)
+Main stages of the final fact-checker: 
+1. Break down a generated response into atomic factual statement to assess (see: [FactScore](https://arxiv.org/abs/2305.14251))
+2. Decide which factual claims are worthy of verification (see: [VeriScore](https://arxiv.org/html/2406.19276v1), a newer version of the FactScore framework)
+3. [Situational] For larger retrieved contexts, break down the retrieved citation text into chunks and rank according to relevance for each fact.
+4. Evaluate each fact against the retrieved context or relevant chunks, outputting a decision label signifying whether the citation supports the claim: True / False (or a popular alternative: "Supports", "Refutes", and "Irrelevant").
+5. In practice, the result is passed over either to an LLM loop that will regenerate the response (in case of factual errors) or an evaluation score.
+
 ## Source datasets
 Data will be collected and transformed from the following sources, potentially among other:
 * [WAFER](https://github.com/facebookresearch/side/blob/main/datasets/WAFER.md): 3.8 million (auto-generated)
@@ -8,9 +20,18 @@ Data will be collected and transformed from the following sources, potentially a
 :*[AVeriTeC (2024)](https://fever.ai/dataset/averitec.html): 4.5k real-world examples
 * Citation Hunt: 32K real-world and original golden dataset from Wikipedia 
 
-## Overall workflow
-![Overall workflow](project/Fact-Checker%20Workflow.jpg)
-
 ## Dataset collection format
 ![Desired format of the dataset](project/Fact-Checker.jpg)
 [Examples of the desired final format of the dataset](https://docs.google.com/spreadsheets/d/10Dg2ox2oGiAoHKWaFDzwj_JAPou9FBGvbhlXQOjt1xQ/edit?usp=sharing). 
+
+## Dataset creation 
+1. Reformat datasets (Wikipedia, WAFER, FEVER, others if needed) into the desired format above.
+2. Create a proportional amount of negative training examples, if missing from the data, by matching random erroneous citations with passages.
+3. Add noisy data to simulate real world retrieval by creating a subset where multiple wrong contexts are appended to the correct citation context.  
+
+## Training strategy
+1. Use an open-source base model to enable sharing the fine-tuned fact-checker publicly as part of the research results.
+2. Prioritize light-weight and smaller models, if feasible, since the goal of the research is to make fact-checking accessible and affordable.
+3. Experiment with various models: incluyding discriminative and generative models, since this is essentially a classification problem. 
+4. Short-list the best models by checking performance on zero and few-shot fact-checking before any fine-tuning.
+5. Possible model to experiment with: Llama-3-8B, Qwen2.5-7B, BERT.
