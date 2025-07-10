@@ -39,4 +39,5 @@ Data will be collected and transformed from the following sources, potentially a
 2. Prioritize light-weight and smaller models, if feasible, since the goal of the research is to make fact-checking accessible and affordable.
 3. Experiment with various models: incluyding discriminative and generative models, since this is essentially a classification problem. 
 4. Short-list the best models by checking performance on zero and few-shot fact-checking before any fine-tuning.
-5. Possible model to experiment with: Llama-3-8B, Qwen2.5-7B, BERT.
+5. Compare models trained on clean fact-checking data vs. those trained with incremental levels of noise that simulates real-world scenarios.
+6. Possible model to experiment with: Llama-3-8B, Qwen2.5-7B, BERT.
