@@ -22,7 +22,7 @@ Data will be collected and transformed from the following sources, potentially a
 |  [VitaminC](https://github.com/TalSchuster/VitaminC)                           |     450K      |    100K Wikipedia revisions and 300K+ synthetic examples   |    ["Supports", "Refutes", "Not Enough Info"]  |  
 |  [FEVEROUS (2021)](https://fever.ai/dataset/feverous.html)                      |     87K      |  Manually verified claim + evidence pairs (Wikipedia)     | ["Supports", "Refutes", "Not Enough Info"]    |  
 |  [AVeriTeC (2024)](https://fever.ai/dataset/averitec.html)                     |     4.5k     |      Subset of FEVER: Real-world examples (Wikipedia)      | ["Supports", "Refutes", "Not Enough Info"]    | 
-|   Citation Hunt                                                                 |     32K      |    Facts edited by adversarial methods    |    N/A: Only supported facts  |   
+|   Citation Hunt                                                                 |     32K      |    Subset of FEVER: Rea-world examples (Wikipedia, expert verified, original)    |    N/A: Only supported facts  |   
 
 ## Dataset collection format
 ![Desired format of the dataset](project/Fact-Checker.jpg)
