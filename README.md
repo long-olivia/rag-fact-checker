@@ -16,11 +16,13 @@ Main stages of the final fact-checker:
 
 ## Source datasets
 Data will be collected and transformed from the following sources, potentially among other:
-* [WAFER](https://github.com/facebookresearch/side/blob/main/datasets/WAFER.md): 3.8 million (auto-generated)
-* FEVER
-:*[FEVEROUS (2021)](https://fever.ai/dataset/feverous.html): 87K verified claims 
-:*[AVeriTeC (2024)](https://fever.ai/dataset/averitec.html): 4.5k real-world examples
-* Citation Hunt: 32K real-world and original golden dataset from Wikipedia 
+|                                       Dataset                                    |     Size    |           Details           |          Labels            |
+| :-----------------------------------------------------------------------------: | :----------: | :-------------------------: | :------------------------: |
+|  [WAFER](https://github.com/facebookresearch/side/blob/main/datasets/WAFER.md)  | 3.8 million  |    Auto-generated passages + evidence text     | N/A: Only supported facts   |
+|  [FEVEROUS (2021)](https://fever.ai/dataset/feverous.html)                      |     87K      |    Manually verified claim + evidence pairs (Wikipedia)     | SUPPORTS, REFUTES, NOT ENOUGH INFO     |  
+|   [AVeriTeC (2024)](https://fever.ai/dataset/averitec.html)                     |     4.5k     |      Real-world examples (Wikipedia)           |     SUPPORTS, REFUTES, NOT ENOUGH INFO     | 
+|   Citation Hunt                                                                 |     32K      |    Rea-world examples (Wikipedia, expert verified, original)  |   Symmetric, FM2   |    N/A  | 
+|   Citation Hunt                                                                 |     32K      |    Facts edited by adversarial methods  |   Symmetric, FM2   |    N/A: Only supported facts  |   
 
 ## Dataset collection format
 ![Desired format of the dataset](project/Fact-Checker.jpg)
