@@ -12,7 +12,8 @@ Main stages of the final fact-checker:
 2. Decide which factual claims are worthy of verification (see: [VeriScore](https://arxiv.org/html/2406.19276v1), a newer version of the FactScore framework)
 3. [Situational] For larger retrieved contexts, break down the retrieved citation text into chunks and rank according to relevance for each fact.
 4. Evaluate each fact against the retrieved context or relevant chunks, outputting a decision label signifying whether the citation supports the claim: True / False (or a popular alternative: "Supports", "Refutes", and "Irrelevant").
-5. In practice, the result is passed over either to an LLM loop that will regenerate the response (in case of factual errors) or an evaluation score.
+5. For generative models, provide an explanation of each label decision ([Neema & Toni, 2020](https://arxiv.org/abs/2011.03870)).
+6. In practice, the result is passed over either to an LLM loop that will regenerate the response (in case of factual errors) or an evaluation score.
 
 ## Source datasets
 Data will be collected and transformed from the following sources, potentially among other:
@@ -21,8 +22,8 @@ Data will be collected and transformed from the following sources, potentially a
 |  [WAFER](https://github.com/facebookresearch/side/blob/main/datasets/WAFER.md)  | 3.8 million  |  Auto-generated passages + evidence text    | N/A: Only supported facts   |
 |  [VitaminC](https://github.com/TalSchuster/VitaminC)                           |     450K      |    100K Wikipedia revisions and 300K+ synthetic examples   |    ["Supports", "Refutes", "Not Enough Info"]  |  
 |  [FEVEROUS (2021)](https://fever.ai/dataset/feverous.html)                      |     87K      |  Manually verified claim + evidence pairs (Wikipedia)     | ["Supports", "Refutes", "Not Enough Info"]    |  
-|  [AVeriTeC (2024)](https://fever.ai/dataset/averitec.html)                     |     4.5k     |      Subset of FEVER: Real-world examples (Wikipedia)      | ["Supports", "Refutes", "Not Enough Info"]    | 
 |   Citation Hunt                                                                 |     32K      |    Subset of FEVER: Rea-world examples (Wikipedia, expert verified, original)    |    N/A: Only supported facts  |   
+|  [AVeriTeC (2024)](https://fever.ai/dataset/averitec.html)                     |     4.5k     |      Subset of FEVER: Real-world examples (Wikipedia)      | ["Supports", "Refutes", "Not Enough Info"]    | 
 
 ## Dataset collection format
 ![Desired format of the dataset](project/Fact-Checker.jpg)
