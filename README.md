@@ -32,7 +32,8 @@ Data will be collected and transformed from the following sources, potentially a
 ## Dataset creation 
 1. Reformat datasets (Wikipedia, WAFER, FEVER, others if needed) into the desired format above.
 2. Create a proportional amount of negative training examples, if missing from the data, by matching random erroneous citations with passages.
-3. Add noisy data to simulate real world retrieval by creating a subset where multiple wrong contexts are appended to the correct citation context.  
+3. Add noisy data to simulate real world retrieval by creating a subset where multiple wrong contexts are appended to the correct citation context.
+4. Consider how to create adversial datasets that attempt to confuse or challenge the models ([a collection of old yet related paper](https://github.com/neemakot/Fact-Checking-Survey/blob/main/README.md?utm_source=chatgpt.com#adversarial-training-for-automated-fact-checking)).
 
 ## Training strategy
 1. Use an open-source base model to enable sharing the fine-tuned fact-checker publicly as part of the research results.
@@ -40,4 +41,5 @@ Data will be collected and transformed from the following sources, potentially a
 3. Experiment with various models: incluyding discriminative and generative models, since this is essentially a classification problem. 
 4. Short-list the best models by checking performance on zero and few-shot fact-checking before any fine-tuning.
 5. Compare models trained on clean fact-checking data vs. those trained with incremental levels of noise that simulates real-world scenarios.
-6. Possible model to experiment with: Llama-3-8B, Qwen2.5-7B, BERT.
+
+7. Possible model to experiment with: Llama-3-8B, Qwen2.5-7B, BERT.
