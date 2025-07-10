@@ -19,10 +19,10 @@ Data will be collected and transformed from the following sources, potentially a
 |                                       Dataset                                    |     Size    |           Details                           |          Labels            |
 | :-----------------------------------------------------------------------------: | :----------: | :-------------------------: | :------------------------: |
 |  [WAFER](https://github.com/facebookresearch/side/blob/main/datasets/WAFER.md)  | 3.8 million  |  Auto-generated passages + evidence text    | N/A: Only supported facts   |
+|  [VitaminC](https://github.com/TalSchuster/VitaminC)                           |     450K      |    100K Wikipedia revisions and 300K+ synthetic examples   |    SUPPORTS, REFUTES, NOT ENOUGH INFO  |  
 |  [FEVEROUS (2021)](https://fever.ai/dataset/feverous.html)                      |     87K      |  Manually verified claim + evidence pairs (Wikipedia)     | SUPPORTS, REFUTES, NOT ENOUGH INFO     |  
-|   [AVeriTeC (2024)](https://fever.ai/dataset/averitec.html)                     |     4.5k     |      Subset of FEVER: Real-world examples (Wikipedia)      |     SUPPORTS, REFUTES, NOT ENOUGH INFO     | 
-|   [Symmetric, FM2](https://github.com/google-research/fool-me-twice)            |     13K      |    Subset of FEVER: Rea-world examples (Wikipedia, expert verified, original)  |    N/A  | 
-|   [VitaminC](https://github.com/TalSchuster/VitaminC)                           |     450K      |    100K Wikipedia revisions and 300K+ synthetic examples   |    SUPPORTS, REFUTES, NOT ENOUGH INFO  |   
+|  [AVeriTeC (2024)](https://fever.ai/dataset/averitec.html)                     |     4.5k     |      Subset of FEVER: Real-world examples (Wikipedia)      |     SUPPORTS, REFUTES, NOT ENOUGH INFO     | 
+|  [Symmetric, FM2](https://github.com/google-research/fool-me-twice)            |     13K      |    Subset of FEVER: Rea-world examples (Wikipedia, expert verified, original)  |    N/A  |  
 |   Citation Hunt                                                                 |     32K      |    Facts edited by adversarial methods  |   Symmetric, FM2   |    N/A: Only supported facts  |   
 
 ## Dataset collection format
