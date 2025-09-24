@@ -1,5 +1,6 @@
 from langchain_community.vectorstores import FAISS
 from langchain_huggingface import HuggingFaceEmbeddings
+from langchain.docstore.document import Document
 from langchain_community.vectorstores.utils import DistanceStrategy
 from tqdm import tqdm
 import json
@@ -9,9 +10,9 @@ import torch
 from transformers import AutoTokenizer, AutoModelForCausalLM, BitsAndBytesConfig
 from colabcode import ColabCode
 
-def embed():
-    EMBEDDING_MODEL_NAME="sentence-transformers/all-MiniLM-L6-v2" #smaller model since i'm running this on my cpu first
+EMBEDDING_MODEL_NAME="sentence-transformers/all-MiniLM-L6-v2" #smaller model first
 
+def embed():
     with open("chunks.json", 'r', encoding="utf-8") as f:
         data=json.load(f)
 
@@ -40,10 +41,31 @@ def embed():
     
     vectorize(data, embedding_model)
 
-def vectorize(data, embedding_model):
-    KNOWLEDGE_VECTOR_DATABASE = FAISS.from_documents(
-        data, embedding_model, distance_strategy=DistanceStrategy.COSINE
+def vectorize(): #data, embedding_model insert these two arguments later on
+    embedding_model=HuggingFaceEmbeddings(
+        model_name=EMBEDDING_MODEL_NAME,
+        multi_process=True,
+        model_kwargs={"device": "cpu"}, #depends on what we ultimately end up using
+        encode_kwargs={"normalize_embeddings": True}
     )
+    with open("embedded_doc.json", 'r') as f:
+        data=json.load(f)
+
+    docs = [
+        Document(
+            page_content=item["Content"],
+            metadata={
+                "ID": item["ID"],
+                "Title": item["Title"],
+                "Section": item["Section"]
+            }
+        )
+        for item in data
+    ]
+    KNOWLEDGE_VECTOR_DATABASE = FAISS.from_documents(
+        docs, embedding_model, distance_strategy=DistanceStrategy.COSINE
+    )
+    return KNOWLEDGE_VECTOR_DATABASE
 
 
 # KNOWLEDGE_VECTOR_DATABASE = FAISS.from_documents(
@@ -51,4 +73,4 @@ def vectorize(data, embedding_model):
 # )
 
 if __name__=="__main__":
-    embed()
+    vectorize()
