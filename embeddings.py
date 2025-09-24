@@ -7,6 +7,7 @@ import numpy as np
 from transformers import pipeline
 import torch
 from transformers import AutoTokenizer, AutoModelForCausalLM, BitsAndBytesConfig
+from colabcode import ColabCode
 
 def embed():
     EMBEDDING_MODEL_NAME="sentence-transformers/all-MiniLM-L6-v2" #smaller model since i'm running this on my cpu first
@@ -43,7 +44,6 @@ def vectorize(data, embedding_model):
     KNOWLEDGE_VECTOR_DATABASE = FAISS.from_documents(
         data, embedding_model, distance_strategy=DistanceStrategy.COSINE
     )
-
 
 
 # KNOWLEDGE_VECTOR_DATABASE = FAISS.from_documents(
