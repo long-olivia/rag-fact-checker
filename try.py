@@ -10,8 +10,7 @@ EMBEDDING_MODEL_NAME = "sentence-transformers/all-MiniLM-L6-v2"
 READER_MODEL_NAME = "HuggingFaceH4/zephyr-7b-beta"
 
 class RAGPipeline:
-
-    def __init__(self, documents, embedding_model_name, reader_model_name, k=3):
+    def __init__(self, documents, embedding_model_name, reader_model_name, k=5):
         self.k = k
         self.documents = documents
         self.doc_contents = [doc['Content'] for doc in documents]
@@ -43,7 +42,6 @@ class RAGPipeline:
             torch_dtype=self.model.dtype,
             device_map='auto'
         )
-        print("RAG pipeline initialized successfully.")
 
 
     def _embed_documents(self):
@@ -128,32 +126,22 @@ class RAGPipeline:
         
         return answer
 
-def load_documents_from_disk(filepath):
+def load(filepath):
     with open(filepath, 'r') as f:
         return json.load(f)
+        
 
 if __name__ == "__main__":
-    documents = load_documents_from_disk("chunks.json")
+    documents = load("chunks.json")
 
-    if not documents:
-        print("No documents loaded. Exiting.")
-    else:
-        rag = RAGPipeline(documents, EMBEDDING_MODEL_NAME, READER_MODEL_NAME, k=3)
+    rag = RAGPipeline(documents, EMBEDDING_MODEL_NAME, READER_MODEL_NAME, k=5)
+    
+    sample_query = "What happened to Louis Desaix after he was recalled from Upper Egypt?" 
+    print(f"\nSample Query: {sample_query}\n")
+    answer = rag.query(sample_query)    
+    print(f"\nFinal Answer: {answer}")
 
-        sample_query = "What happened to Louis Desaix after he was recalled from Upper Egypt?"
-        
-        print("\n--- Starting Sample Query ---")
-        answer = rag.query(sample_query)
-        
-        print("\nFinal Answer:")
-        print(answer)
-        print("-----------------------------\n")
-
-        sample_query_2 = "Where was Desaix born and who were his parents?"
-        
-        print("\n--- Starting Second Sample Query ---")
-        answer_2 = rag.query(sample_query_2)
-        
-        print("\nFinal Answer:")
-        print(answer_2)
-        print("-----------------------------\n")
+    sample_query_2 = "Where was Desaix born and who were his parents?"
+    print(f"\nSample Query: {sample_query_2}\n")
+    answer_2 = rag.query(sample_query_2)
+    print(f"\nFinal Answer: {answer_2}")
