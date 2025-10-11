@@ -53,7 +53,7 @@ class RAGPipeline:
         
         similarities = cosine_similarity(query_embedding_np, doc_embeddings_np)[0]
         
-        top_k_indices = np.argsort(similarities)[::-1][:self.k]
+        top_k_indices = np.argsort(similarities)[::-1][:self.k] #rerank based on similiarity 
         
         retrieved_documents = [self.documents[i] for i in top_k_indices]
         
